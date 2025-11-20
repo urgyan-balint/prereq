@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: ping-gateway
+spec:
+  selector:
+    istio: ingressgateway # Az alapértelmezett Istio Ingress Controller használata
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*" # Minden domainről fogadunk kérést
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: ping-virtualservice
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - ping-gateway
+  http:
+  - match:
+    - uri:
+        prefix: "/ping"  # Ha a /ping címre jön kérés...
+    route:
+    - destination:
+        host: ping-app   # ...akkor küldjük a ping-app service-re
+        port:
+          number: 8080

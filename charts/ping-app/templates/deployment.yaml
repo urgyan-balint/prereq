@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: ping
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+          env:
+            # ITT TÖRTÉNIK A MÁGIA
+            # A Spring Boot a PONG_SERVICE_URL környezeti változót 
+            # automatikusan behelyettesíti a "pong.service.url" property helyére.
+            - name: PONG_SERVICE_URL
+              value: {{ .Values.backendUrl | quote }}

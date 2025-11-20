@@ -1,0 +1,12 @@
+image:
+  repository: ping-service
+  tag: "v1"
+  pullPolicy: Never
+
+service:
+  type: ClusterIP # Hogy elérd a böngészőből (minikube tunnel-lel)
+  port: 8080
+
+# KONFIGURÁCIÓ: Itt adjuk meg, kit kell hívni
+# A formátum: http://<service-neve>.<namespace>.svc.cluster.local:<port>/<endpoint>
+backendUrl: "http://pong-app.default.svc.cluster.local:8081/api/data"

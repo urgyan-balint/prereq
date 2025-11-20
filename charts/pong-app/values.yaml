@@ -1,0 +1,8 @@
+image:
+  repository: pong-service
+  tag: "v1"
+  pullPolicy: Never # Minikube-hoz kötelező, ha helyben buildeltél!
+
+service:
+  type: ClusterIP # Csak belső elérés
+  port: 8081
