@@ -1,0 +1,20 @@
+{{- if .Values.istio.virtualService.enabled }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ .Release.Name }}-vs
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - {{ .Release.Name }}-gateway
+  http:
+  - match:
+    - uri:
+        prefix: "/"
+    route:
+    - destination:
+        host: {{ .Release.Name }}
+        port:
+          number: {{ .Values.service.port }}
+{{- end }}

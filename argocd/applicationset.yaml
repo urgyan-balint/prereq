@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: ping-pong-multicluster
+spec:
+  generators:
+  - clusters: {}
+  template:
+    metadata:
+      name: '{{name}}-pingpong'
+    spec:
+      project: default
+      source:
+        repoURL: 'https://your-git-repo.git'
+        targetRevision: HEAD
+        path: charts/{{name}}-app
+        helm:
+          valueFiles:
+          - values.yaml
+          - argocd/cluster-overrides/{{name}}-values-{{name}}.yaml
+      destination:
+        server: '{{server}}'
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

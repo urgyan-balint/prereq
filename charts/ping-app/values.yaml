@@ -10,3 +10,9 @@ service:
 # KONFIGURÁCIÓ: Itt adjuk meg, kit kell hívni
 # A formátum: http://<service-neve>.<namespace>.svc.cluster.local:<port>/<endpoint>
 backendUrl: "http://pong-app.default.svc.cluster.local:8081/api/data"
+
+istio:
+  gateway:
+    enabled: false
+  virtualService:
+    enabled: false

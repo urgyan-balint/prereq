@@ -6,3 +6,9 @@ image:
 service:
   type: ClusterIP # Csak belső elérés
   port: 8081
+
+istio:
+  gateway:
+    enabled: false
+  virtualService:
+    enabled: false
