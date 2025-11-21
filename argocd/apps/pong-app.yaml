@@ -11,8 +11,8 @@ spec:
     path: charts/pong-app
     helm:
       valueFiles:
-      - charts/pong-app/values.yaml
-      - argocd/cluster-overrides/pong-values-clusterB.yaml
+        - values.yaml
+        - ../../argocd/cluster-overrides/pong-values-clusterB.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: default

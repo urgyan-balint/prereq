@@ -1,0 +1,33 @@
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+
+# Build artefacts
+target/
+dist/
+node_modules/
+
+# Helm
+*.tgz
+charts/*/templates/*.bak
+
+# Kubernetes / ArgoCD generated files
+*.log
+*.out
+
+# Binary files
+*.deb
+*.exe
+*.zip
+*.tar.gz
+
+# Istio release folder (if downloaded)
+istio-*/
+
+# Minikube binary
+minikube_latest_*.deb

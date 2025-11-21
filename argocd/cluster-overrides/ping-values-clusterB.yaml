@@ -1,5 +1,0 @@
-istio:
-  gateway:
-    enabled: false
-  virtualService:
-    enabled: true

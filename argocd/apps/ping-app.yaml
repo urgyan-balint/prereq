@@ -11,8 +11,8 @@ spec:
     path: charts/ping-app
     helm:
       valueFiles:
-      - charts/ping-app/values.yaml
-      - argocd/cluster-overrides/ping-values-clusterA.yaml
+        - values.yaml
+        - ../../argocd/cluster-overrides/ping-values-clusterA.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: default
